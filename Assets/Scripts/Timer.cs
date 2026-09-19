@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEditor.Rendering;
 
 public class Timer : MonoBehaviour
 {
@@ -10,20 +11,21 @@ public class Timer : MonoBehaviour
     
     void Start()
     {
-        StartTime = Time.time;
+       // StartTime = Time.time;
+       timer = 60; // THIS SETS THE TIMER TO 60 SECONDS AT THE START OF THE GAME SO IT COUNTS DOWN
     }
 
     
     void Update()
     {
-        float t= Time.time - StartTime;// THIS GIVES US THE TIME IN SECONDS SINCE THE START OF THE GAME AND "T" HOLDS THE VALUE
-        string minutes = ((int)t / 60).ToString("f0");// THIS CALCULATES THE MINUTES BY DIVIDING THE TIME BY 60 AND CONVERTING IT TO AN INTEGER, THEN TO A STRING TO DISPLAY WITHOUT DECIMAL PLACES
-        string seconds = (t % 60).ToString("f0");// THIS CALCULATES THE SECONDS BY TAKING THE REMAINDER OF THE TIME DIVIDED BY 60, THEN CONVERTING IT TO A STRING TO DISPLAY WITHOUT DECIMAL PLACES
-        timerText.text =  seconds;// THIS UPDATES THE TEXT OF THE TIMER TO SHOW THE  SECONDS
+        //float t= Time.time - StartTime;// THIS GIVES US THE TIME IN SECONDS SINCE THE START OF THE GAME AND "T" HOLDS THE VALUE
+        //string minutes = ((int)t / 60).ToString("f0");// THIS CALCULATES THE MINUTES BY DIVIDING THE TIME BY 60 AND CONVERTING IT TO AN INTEGER, THEN TO A STRING TO DISPLAY WITHOUT DECIMAL PLACES
+       // string seconds = (t % 60).ToString("f0");// THIS CALCULATES THE SECONDS BY TAKING THE REMAINDER OF THE TIME DIVIDED BY 60, THEN CONVERTING IT TO A STRING TO DISPLAY WITHOUT DECIMAL PLACES
+        //timerText.text =  seconds;// THIS UPDATES THE TEXT OF THE TIMER TO SHOW THE  SECONDS
         timer -= Time.deltaTime;
 
 
-        if (timer <= 0)
+       /* if (timer <= 0)
         {
             Debug.Log("Game Over!");
             timerText.text = "Game Over!";
@@ -36,7 +38,22 @@ public class Timer : MonoBehaviour
         if (timer < 20)
         {
             timerText.color= Color.red;
+        }*/
+        
+        if (timer < 0)
+        {
+            timer = 0; // THIS IS TO MAKE SURE THE TIMER DOESNT GO PAST ZERO
+            Debug.Log("Game Over!");
+            timerText.text = "Game Over!";
+    
         }
+        
+      
+        
+        string seconds = (timer % 60) . ToString("f0");// THIS CALCULATES THE SECONDS BY TAKING THE REMAINDER OF THE TIME DIVIDED BY 60, THEN CONVERTING IT TO A STRING TO DISPLAY WITHOUT DECIMAL PLACES
+        Debug.Log(seconds);
+        timerText.text = seconds;// THIS UPDATES THE TEXT OF THE TIMER TO SHOW THE  SECONDS
+    
 
         
     }
