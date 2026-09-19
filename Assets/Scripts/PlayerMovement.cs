@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
+
 public class PlayerMovement : MonoBehaviour
 {
     public float walking = 7f;
