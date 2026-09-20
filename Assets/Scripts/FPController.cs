@@ -243,6 +243,20 @@ public class FPController : MonoBehaviour
             if (interactable != null)
             {
                 interactionPrompt.SetActive(true);
+                InteractionPromptText prompt =
+               hit.collider.GetComponent<InteractionPromptText>();
+
+                if (prompt != null)
+                {
+                    interactionPrompt.GetComponent<TMPro.TMP_Text>().text =
+                        prompt.promptText;
+                }
+                else
+                {
+                    interactionPrompt.GetComponent<TMPro.TMP_Text>().text =
+                        "PRESS E TO INTERACT";
+                }
+
                 return;
             }
         }
