@@ -12,7 +12,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnContinueClick()
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("LVL 1 Base Level");
     }
 
     public void OnQuitGameClick()

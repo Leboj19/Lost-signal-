@@ -19,6 +19,6 @@ public class StartButtonScript : MonoBehaviour
 
     void LoadNextScene()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("LVL 1 Base Level");
     }
 }

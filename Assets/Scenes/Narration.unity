@@ -329,8 +329,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -647,8 +647,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1090,7 +1090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NarrationScript
   dialogueText: {fileID: 1148878011}
-  typingSpeed: 0.04
+  typingSpeed: 0.09
   fadeScript: {fileID: 118859384}
   lines:
   - 'Mother Ship to Rs-Q2... '
@@ -1098,12 +1098,14 @@ MonoBehaviour:
   - The central servers are down, Rs-Q2
   - 'Do you copy? '
   - It seems communication is unidirectional
-  - 'Listen Rs-Q2 '
+  - 'Listen Rs-Q2, The Signal has affected your power source '
+  - You will only have 3 Minutes Until Your system shuts down-
   - 'A- acquire anything you can, anything salvagable to restore the signal- '
-  - If you hear this you must restore
+  - 'My Server tells me there are 3 Computer Chips and a PLasma battery. '
+  - Locate them and take them to the Signal Port of the space ship
+  - ' you must restore'
   - the LOST SIGNAL-
-  - Locate and collect the box, goodluck-
-  - -over
+  - 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
