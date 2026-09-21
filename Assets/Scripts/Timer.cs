@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Timer : MonoBehaviour
 {
-    public float timer = 300f;
+    public float timer = 180f;
     public TextMeshProUGUI timerText;
 
     [Header("Game Over")]
@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         // StartTime = Time.time;
-        timer = 300f; // THIS SETS THE TIMER TO 60 SECONDS AT THE START OF THE GAME SO IT COUNTS DOWN
+        timer = 180f; // THIS SETS THE TIMER TO 60 SECONDS AT THE START OF THE GAME SO IT COUNTS DOWN
 
         Time.timeScale = 1f;
     }
@@ -63,7 +63,7 @@ public class Timer : MonoBehaviour
         // Convert seconds into minutes and seconds
         int minutes = Mathf.FloorToInt(timer / 60f);
          int seconds = Mathf.FloorToInt(timer % 60f);
-        //Display as 5:00, 4:59, 4:58,......
+        //Display as 3:00, 2:59, 2:58,......
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
         
