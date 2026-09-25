@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "Maze game.slnx"
+    "dotnet.defaultSolution": "Lost-signal-.slnx"
 }
