@@ -34,13 +34,15 @@ public class FPController : MonoBehaviour
     private float verticalRotation = 0f;
     // Awake runs once when the GameObject is first loaded.
 
+    private bool gameFinished = false;
+
     [Header("Pickup Settings")]
     public float pickupRange = 3f;
     public Transform holdPoint;
     private PickupObject heldObject;
 
     [Header("Interaction")]
-    public float interactionDistance = 3f;
+    public float interactionDistance = 1f;
     public Camera playerCamera;
     public InputActionReference interactAction;
 
@@ -57,6 +59,9 @@ public class FPController : MonoBehaviour
     }
     private void Update()
     {
+        if (gameFinished)
+            return;
+        
         HandleMovement();
         HandleLook();
         CheckForInteraction();
@@ -263,6 +268,21 @@ public class FPController : MonoBehaviour
 
         interactionPrompt.SetActive(false);
 
+    }
+    public void StopPlayer()
+    {
+        gameFinished = true;
+
+        moveInput = Vector2.zero;
+        lookInput = Vector2.zero;
+
+        velocity = Vector3.zero;
+
+        if(interactionPrompt != null)
+        {
+            interactionPrompt.SetActive(false);
+        }
+        Debug.Log("PLAYER FROZEN.");
     }
 }
 

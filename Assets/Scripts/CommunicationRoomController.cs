@@ -74,6 +74,8 @@ public class CommunicationRoomController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2f);
+        
+        if (screenText != null)
         {
             screenText.text = "RESTORING SIGNAL....";
         }
@@ -128,7 +130,19 @@ public class CommunicationRoomController : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         Debug.Log("LEVEL COMPLETE!");
-    }
+
+        Timer timer = FindFirstObjectByType<Timer>();
+
+        if (timer != null)
+        {
+            timer.GameCompleted();
+        }
+        else
+        {
+            Debug.LogWarning("Timer not found!");
+        }
+     
+}
 
     private void TurnLightsOff()
     {

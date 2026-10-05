@@ -10,7 +10,7 @@ public class FinalSignalPort : MonoBehaviour, IInteractable
     public void Interact()
     {
         Debug.Log("FINAL SIGNAL PORT INTERACTED!");
-        
+
         SignalInventory inventory =
             FindFirstObjectByType<SignalInventory>();
 
@@ -49,7 +49,7 @@ public class FinalSignalPort : MonoBehaviour, IInteractable
 
             return;
         }
-        
+
         Debug.Log("NO REQUIRED COMPONENT AVAILABLE.");
 
         //IF PLAYER HAS NOTHING
@@ -57,12 +57,12 @@ public class FinalSignalPort : MonoBehaviour, IInteractable
         {
             Debug.Log("You need the Signal Chip and Battery!");
         }
-        
+
         else if (!chipInserted)
         {
             Debug.Log("You still need the Signal Chip!");
         }
-        
+
         else if (!batteryInserted)
         {
             Debug.Log("You still need the Battery!");
@@ -78,8 +78,9 @@ public class FinalSignalPort : MonoBehaviour, IInteractable
             {
                 communicationRoom.SystemReady();
             }
+
         }
+
+
     }
-
-
 }
