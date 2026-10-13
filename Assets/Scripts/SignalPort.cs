@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SignalPort : MonoBehaviour,IInteractable
 {
+    [Header("Signal Port Lights")]
     public Renderer leftGlow;
     public Renderer rightGlow;
 
@@ -10,7 +11,15 @@ public class SignalPort : MonoBehaviour,IInteractable
     public Material redMaterial;
     public Material purpleMaterial;
 
+    [Header("Signal Settings")]
     public float flickerDuration = 3f;
+
+    [Header("Signal Port Audio")]
+    [SerializeField] private AudioSource portAudio;
+    [SerializeField] private AudioClip activationStartSound;
+    [SerializeField] private AudioClip signalRestoredSound;
+
+
 
     private bool activated = false;
     private bool flickering = false;
@@ -54,6 +63,8 @@ public class SignalPort : MonoBehaviour,IInteractable
     {
         flickering = true;
 
+        PlayPortSound(activationStartSound);
+
         float timer = 0f;
 
         while (timer < flickerDuration)
@@ -74,7 +85,16 @@ public class SignalPort : MonoBehaviour,IInteractable
         activated = true;
         flickering = false;
 
+        PlayPortSound(signalRestoredSound);
+
         Debug.Log("SIGNAL RESTORED!");
+    }
+    private void PlayPortSound(AudioClip clip)
+    {
+        if(portAudio != null && clip != null)
+        {
+            portAudio.PlayOneShot(clip);
+        }
     }
 
     private void SetOff()

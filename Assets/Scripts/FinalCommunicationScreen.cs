@@ -7,9 +7,14 @@ public class FinalCommunicationScreen : MonoBehaviour, IInteractable
     public void Interact()
     {
         Debug.Log("Final screen interacted with!");
+        
         if (communicationRoom != null)
         {
             communicationRoom.StartCommunication();
+        }
+        else
+        {
+            Debug.LogWarning("CommunicationRoomcController is not assigned!", this);
         }
     }
 }

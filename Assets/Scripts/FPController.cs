@@ -48,6 +48,10 @@ public class FPController : MonoBehaviour
 
     public GameObject interactionPrompt;
 
+    [Header("Sprint Settings")]
+    public float sprintSpeed = 8f;
+    private bool isSprinting = false;
+
 
 
     private void Awake()
@@ -89,6 +93,18 @@ public class FPController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
     }
     // This method is called by the Input System when look input changes.
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isSprinting = true;
+        }
+        else if (context.canceled)
+        {
+            isSprinting = false;
+        }
+    }
     public void OnLook(InputAction.CallbackContext context)
     {
         // Reads the look input as a Vector2.
@@ -103,7 +119,15 @@ public class FPController : MonoBehaviour
         transform.right * moveInput.x +
         transform.forward * moveInput.y;
         // Moves the player horizontally.
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        
+        float currentSpeed = moveSpeed;
+        if (isSprinting)
+        {
+            currentSpeed = sprintSpeed;
+        }
+
+        controller.Move(move * currentSpeed * Time.deltaTime);
+        
         // Keeps the player connected to the ground.
         if (controller.isGrounded && velocity.y < 0)
         {

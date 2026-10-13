@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+    [Header("Door Movement")]
     public Transform door;
     public Vector3 openPosition;
     public float openSpeed = 2f;
@@ -9,12 +10,24 @@ public class DoorController : MonoBehaviour
     [Header("Door Settings")]
     public bool requiresUnlock = false;
 
+    [Header("Door Audio")]
+    [SerializeField] private AudioSource doorAudio;
+    [SerializeField] private AudioClip doorOpenSound;
+    [SerializeField] private AudioClip doorCloseSound;
+
+
     private Vector3 closedPosition;
     private bool isOpen = false;
     private bool unlocked = false;
 
      void Start()
     {
+       if(door == null)
+        {
+            Debug.LogError("Door Transform is not assigned!", this);
+            return;
+        }
+        
         closedPosition = door.localPosition;
 
         if (!requiresUnlock)
@@ -24,6 +37,9 @@ public class DoorController : MonoBehaviour
     }
     void Update()
     {
+        if (door == null)
+            return;
+        
         if (isOpen)
         {
             door.localPosition = Vector3.Lerp(
@@ -55,13 +71,30 @@ public class DoorController : MonoBehaviour
             Debug.Log(" Door is locked. Interact with computer first");
             return;
         }
-        isOpen = true;
+        if (!isOpen)
+        {
+            isOpen = true;
+            PlayDoorSound(doorOpenSound);
+        }
+      
         
     }
 
     public void CloseDoor()
+    
     {
-        isOpen = false;
+        if (isOpen)
+        {
+            isOpen = false;
+            PlayDoorSound(doorCloseSound);
+        }
+    }
+    private void PlayDoorSound(AudioClip clip)
+    {
+        if(doorAudio != null && clip != null)
+        {
+            doorAudio.PlayOneShot(clip);
+        }
     }
 }
 
