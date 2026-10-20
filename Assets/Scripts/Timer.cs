@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 public class Timer : MonoBehaviour
 {
     public float timer = 180f;
@@ -70,38 +69,10 @@ public class Timer : MonoBehaviour
         
 
     }
-
-    public void GameCompleted()
+    void ReturnToMainMenu()
     {
-        if (gameOver)
-            return;
-
-        gameOver = true;
-
-        FPController player = FindFirstObjectByType<FPController>();
-
-        if(player != null)
-        {
-            player.StopPlayer();
-        }
-        else
-        {
-            Debug.LogWarning("  FPController not found!");
-        }
-
-        Time.timeScale = 0f;
-
-        timerText.text = "MISSION COMPLETE!";
-        Debug.Log("ALL OBJECTIVES COMPLETED - GAME FINISHED!");
-
-        StartCoroutine(ReturnToMainMenu());
-    }
-    private IEnumerator ReturnToMainMenu()
-    {
-        yield return new WaitForSecondsRealtime(5f);
-        
         Time.timeScale = 1f;
 
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene(startMenuSceneName);
     }
 }
