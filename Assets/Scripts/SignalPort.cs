@@ -22,6 +22,7 @@ public class SignalPort : MonoBehaviour,IInteractable
 
 
     private bool activated = false;
+    public bool IsActivated => activated;
     private bool flickering = false;
 
     private void Start()

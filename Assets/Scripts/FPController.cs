@@ -35,6 +35,8 @@ public class FPController : MonoBehaviour
     // Awake runs once when the GameObject is first loaded.
 
     private bool gameFinished = false;
+    private bool gameplayInputBlocked = false;
+
 
     [Header("Pickup Settings")]
     public float pickupRange = 3f;
@@ -65,6 +67,17 @@ public class FPController : MonoBehaviour
     {
         if (gameFinished)
             return;
+
+        if (gameplayInputBlocked)
+        {
+            moveInput = Vector2.zero;
+            lookInput = Vector2.zero;
+
+            if (interactionPrompt != null)
+                interactionPrompt.SetActive(false);
+
+            return;
+        }
         
         HandleMovement();
         HandleLook();
@@ -292,6 +305,27 @@ public class FPController : MonoBehaviour
 
         interactionPrompt.SetActive(false);
 
+    }
+    public void SetGameplayInputBlocked(bool blocked)
+    {
+        gameplayInputBlocked = blocked;
+
+        moveInput = Vector2.zero;
+        lookInput = Vector2.zero;
+
+        if (blocked)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            if (interactionPrompt != null)
+                interactionPrompt.SetActive(false);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
     public void StopPlayer()
     {

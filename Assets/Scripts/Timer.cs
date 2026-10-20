@@ -2,23 +2,44 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
-    public float timer = 180f;
+    [Header("Timer settings")]
+    public float timer = 300f;
+    public float startingTime = 300f;
     public TextMeshProUGUI timerText;
+
+
+    [Header("Robot Battery HUD")]
+    public  Image batteryFill;
+    public TextMeshProUGUI batteryPercentageText;
+
+    public Color fullBatteryColor = new Color32(112, 214, 255, 255);
+    public Color mediumBatteryColor = Color.yellow;
+    public Color lowBatteryColor = Color.red;
+
+
+
+
 
     [Header("Game Over")]
     public string startMenuSceneName = "Main Menu";
     public float gameOverDelay = 2f;
 
     private bool gameOver = false;
+    
 
     void Start()
     {
         // StartTime = Time.time;
-        timer = 180f; // THIS SETS THE TIMER TO 60 SECONDS AT THE START OF THE GAME SO IT COUNTS DOWN
+        timer = startingTime; // THIS SETS THE TIMER TO 60 SECONDS AT THE START OF THE GAME SO IT COUNTS DOWN
 
         Time.timeScale = 1f;
+
+        UpdateBattery();
+        UpdateTimerText();
+
     }
     void Update()
     {
@@ -44,13 +65,16 @@ public class Timer : MonoBehaviour
                     timerText.color= Color.red;
                 }*/
 
-        if (timer < 0)
+        if (timer < 0f)
         {
-            timer = 0; // THIS IS TO MAKE SURE THE TIMER DOESNT GO PAST ZERO
+            timer = 0f; // THIS IS TO MAKE SURE THE TIMER DOESNT GO PAST ZERO
             gameOver = true;
             
+            if(timerText != null)
             timerText.text = "GAME OVER!";
-            
+
+            UpdateBattery();
+
             Time.timeScale = 0f;
 
             Invoke("ReturnToMainMenu", gameOverDelay);
@@ -60,15 +84,61 @@ public class Timer : MonoBehaviour
             return;
 
         }
+        UpdateTimerText();
+        UpdateBattery();
 
-        // Convert seconds into minutes and seconds
-        int minutes = Mathf.FloorToInt(timer / 60f);
-         int seconds = Mathf.FloorToInt(timer % 60f);
-        //Display as 3:00, 2:59, 2:58,......
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+       
 
         
 
+    }
+    void UpdateTimerText()
+    {
+        if (timerText == null)
+            return;
+
+
+        // Convert seconds into minutes and seconds
+        int minutes = Mathf.FloorToInt(timer / 60f);
+        int seconds = Mathf.FloorToInt(timer % 60f);
+       
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+    }
+    public void AddTime (float seconds)
+    {
+        if (gameOver || seconds <= 0f)
+            return;
+
+        timer += seconds;
+
+        UpdateTimerText();
+        UpdateBattery();
+
+        Debug.Log("Robot power restored! Added " +
+        seconds + " seconds. Time remaining: " + timer);
+    }
+    void UpdateBattery()
+    {
+        float battery = Mathf.Clamp01(timer / startingTime);
+
+        if(batteryFill != null)
+        {
+            batteryFill.fillAmount = battery;
+
+            if (battery <= 0.2f)
+                batteryFill.color = lowBatteryColor;
+            else if(battery <= 0.5f)
+                batteryFill.color = mediumBatteryColor;
+            else
+                batteryFill.color = fullBatteryColor;
+        }
+        if (batteryPercentageText != null)
+        {
+            int percentage = Mathf.CeilToInt(battery * 100f);
+            batteryPercentageText.text = percentage + "%";
+        }
     }
 
     public void GameCompleted()
