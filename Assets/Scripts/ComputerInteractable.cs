@@ -10,7 +10,8 @@ public class ComputerInteractable : MonoBehaviour, IInteractable
         IdentityPuzzle,
         MissionScreen,
         WarningScreen,
-        WireRepair
+        WireRepair,
+        PuzzleComputer
     }
 
     [Header("Computer Type")]
@@ -54,6 +55,9 @@ public class ComputerInteractable : MonoBehaviour, IInteractable
     [Header("Wire Repair")]
     public WireRepairInteractable wireRepair;
 
+    [Header("Puzzle Computer")]
+    public WordPuzzle puzzleManager;
+
 
 
     private bool interacted = false;
@@ -77,6 +81,20 @@ public class ComputerInteractable : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
+        if (computerType == ComputerType.PuzzleComputer)
+        {
+            if (puzzleManager != null)
+            {
+                puzzleManager.OpenPuzzle();
+            }
+            else
+            {
+                Debug.LogWarning(
+                    "Puzzle manager is not assigned!", this);
+            }
+
+            return;
+        }
         if (computerType == ComputerType.WireRepair)
         {
             if (wireRepair == null)

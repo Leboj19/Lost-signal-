@@ -1,27 +1,36 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class WordPuzzle : MonoBehaviour
 {
-  public GameObject puzzleCanvas;
-
-  public FPController playerMovement;
+    [Header("Puzzle UI")]
+    public GameObject puzzleCanvas;
+    public TMP_InputField inputField;
+    public TMP_Text feedbackText;
+   
+    [Header("Player and Door")]
+    public FPController playerMovement;
 
   public DoorController doorController;
 
-  public TMP_InputField inputField;
-  public TMP_Text feedbackText;
 
-  public string correctWord = "SPACESHIP";
+
+    [Header("Password")]
+    public string correctWord = "SPACESHIP";
 
   private bool puzzleOpen = false;
 
   void Start()
     {
       // OpenPuzzle();
+      if((puzzleCanvas != null))
        puzzleCanvas.SetActive(false);
-       Cursor.lockState = CursorLockMode.Locked;
+       
+        Cursor.lockState = CursorLockMode.Locked;
        Cursor.visible = false;
+
+
 
     }
     void LateUpdate()
@@ -50,6 +59,9 @@ public class WordPuzzle : MonoBehaviour
 
         inputField.text = "";
         feedbackText.text = "";
+
+        inputField.ActivateInputField();
+        inputField.Select();
 
     }
     public void ClosePuzzle()

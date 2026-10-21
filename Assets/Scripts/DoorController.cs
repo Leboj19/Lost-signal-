@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using System.Collections;
 
 public class DoorController : MonoBehaviour
 {
@@ -10,6 +12,14 @@ public class DoorController : MonoBehaviour
     [Header("Door Settings")]
     public bool requiresUnlock = false;
 
+    [Header("Locked Door Warning")]
+    public GameObject warningPanel;
+    public TMP_Text warningText;
+    [TextArea(2, 4)]
+    public string lockedMessage =
+        "ACCESS LOCKED\n\nInteract with the computer terminal first.";
+    public float warningDuration = 3f;
+
     [Header("Door Audio")]
     [SerializeField] private AudioSource doorAudio;
     [SerializeField] private AudioClip doorOpenSound;
@@ -19,8 +29,10 @@ public class DoorController : MonoBehaviour
     private Vector3 closedPosition;
     private bool isOpen = false;
     private bool unlocked = false;
+    private Coroutine warningCoroutine;
 
-     void Start()
+
+    void Start()
     {
        if(door == null)
         {
@@ -29,6 +41,10 @@ public class DoorController : MonoBehaviour
         }
         
         closedPosition = door.localPosition;
+        unlocked = !requiresUnlock;
+
+        if (warningPanel != null)
+            warningPanel.SetActive(false);
 
         if (!requiresUnlock)
         {
@@ -39,7 +55,14 @@ public class DoorController : MonoBehaviour
     {
         if (door == null)
             return;
-        
+
+        Vector3 targetPosition = isOpen ? openPosition : closedPosition;
+
+        door.localPosition = Vector3.Lerp(
+            door.localPosition,
+            targetPosition,
+            Time.deltaTime * openSpeed);
+
         if (isOpen)
         {
             door.localPosition = Vector3.Lerp(
@@ -68,7 +91,7 @@ public class DoorController : MonoBehaviour
     {
         if (!unlocked)
         {
-            Debug.Log(" Door is locked. Interact with computer first");
+            ShowLockedWarning();
             return;
         }
         if (!isOpen)
@@ -88,6 +111,34 @@ public class DoorController : MonoBehaviour
             isOpen = false;
             PlayDoorSound(doorCloseSound);
         }
+
+    }
+    private void ShowLockedWarning()
+    {
+        if (warningPanel == null)
+        {
+            Debug.LogWarning(
+                "Locked door warning panel is not assigned!", this);
+            return;
+        }
+        if (warningText != null)
+            warningText.text = lockedMessage;
+
+        warningPanel.SetActive(true);
+
+        if (warningCoroutine != null)
+            StopCoroutine(warningCoroutine);
+
+        warningCoroutine = StartCoroutine(HideWarningAfterDelay());
+    }
+    private IEnumerator HideWarningAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(warningDuration);
+
+        if (warningPanel != null)
+            warningPanel.SetActive(false);
+
+        warningCoroutine = null;
     }
     private void PlayDoorSound(AudioClip clip)
     {
