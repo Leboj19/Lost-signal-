@@ -12,7 +12,7 @@ public class LVLSettings : MonoBehaviour
 
     void Start()
     {
-        float savedVolume = PlayerPrefs.GetFloat("volume", 1f);
+       float savedVolume = Mathf.Max(PlayerPrefs.GetFloat("volume", 1f), 0.1f);
         float savedBrightness = PlayerPrefs.GetFloat("brightness", 1f);
 
         volumeSlider.value = savedVolume;
@@ -23,7 +23,12 @@ public class LVLSettings : MonoBehaviour
     }
 
     public void SetVolume(float value)
-    {
+{
+    Debug.Log("SetVolume called: " + value);
+    AudioListener.volume = value;
+    PlayerPrefs.SetFloat("volume", value);
+
+    
         AudioListener.volume = value;
         PlayerPrefs.SetFloat("volume", value);
     }
