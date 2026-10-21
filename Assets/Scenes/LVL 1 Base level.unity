@@ -808,8 +808,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371df4720b9db694880d4eadafeba555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ComputerInteractable
+  computerType: 0
+  displayMessage: 'MISSION OBJECTIVES
+
+
+    Explore the spaceship and restore communications.'
+  displayDuration: 5
   screenUI: {fileID: 1136457535}
+  computerMessage: {fileID: 0}
+  identityInput: {fileID: 0}
+  verifyButton: {fileID: 0}
+  objectivesPanel: {fileID: 0}
   door: {fileID: 0}
+  playerController: {fileID: 0}
+  computerAudio: {fileID: 0}
+  computerInteractionSound: {fileID: 0}
+  verificationSound: {fileID: 0}
+  continueButton: {fileID: 0}
+  wireRepair: {fileID: 0}
+  puzzleManager: {fileID: 0}
 --- !u!65 &95354942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1147,6 +1164,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinalSignalPort
   communicationRoom: {fileID: 293640638}
+  portAudio: {fileID: 0}
+  componentInsertedSound: {fileID: 0}
+  activationSound: {fileID: 0}
 --- !u!114 &209686597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16142,6 +16162,12 @@ MonoBehaviour:
   - {fileID: 2921893477438897896}
   - {fileID: 4656481918279464737}
   - {fileID: 8624159212918787932}
+  communicationAudio: {fileID: 0}
+  systemReadySound: {fileID: 0}
+  signalRestoringSound: {fileID: 0}
+  blackoutSound: {fileID: 0}
+  powerRestoredSound: {fileID: 0}
+  communicationCompleteSound: {fileID: 0}
 --- !u!4 &293640639
 Transform:
   m_ObjectHideFlags: 0
@@ -16483,6 +16509,9 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 6ec34ec7744f9df4fa579bd1b577a30a, type: 2}
   purpleMaterial: {fileID: 2100000, guid: 82ebdca28648695478ee4e0da10d12aa, type: 2}
   flickerDuration: 3
+  portAudio: {fileID: 0}
+  activationStartSound: {fileID: 0}
+  signalRestoredSound: {fileID: 0}
 --- !u!114 &369098571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16758,8 +16787,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371df4720b9db694880d4eadafeba555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ComputerInteractable
+  computerType: 0
+  displayMessage: 'MISSION OBJECTIVES
+
+
+    Explore the spaceship and restore communications.'
+  displayDuration: 5
   screenUI: {fileID: 436640621}
+  computerMessage: {fileID: 0}
+  identityInput: {fileID: 0}
+  verifyButton: {fileID: 0}
+  objectivesPanel: {fileID: 0}
   door: {fileID: 0}
+  playerController: {fileID: 0}
+  computerAudio: {fileID: 0}
+  computerInteractionSound: {fileID: 0}
+  verificationSound: {fileID: 0}
+  continueButton: {fileID: 0}
+  wireRepair: {fileID: 0}
+  puzzleManager: {fileID: 0}
 --- !u!65 &409529259
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29573,6 +29619,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticDoor
   door: {fileID: 6239234334168873949}
+  requiredSignalPorts: []
+  doorMessageUI: {fileID: 0}
+  doorMessageText: {fileID: 0}
+  lockedMessage: 'ACCESS DENIED
+
+    Activate both Signal Ports to unlock this room.'
 --- !u!65 &954848382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35308,8 +35360,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371df4720b9db694880d4eadafeba555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ComputerInteractable
+  computerType: 0
+  displayMessage: 'MISSION OBJECTIVES
+
+
+    Explore the spaceship and restore communications.'
+  displayDuration: 5
   screenUI: {fileID: 1559664569}
+  computerMessage: {fileID: 0}
+  identityInput: {fileID: 0}
+  verifyButton: {fileID: 0}
+  objectivesPanel: {fileID: 0}
   door: {fileID: 6239234334168873949}
+  playerController: {fileID: 0}
+  computerAudio: {fileID: 0}
+  computerInteractionSound: {fileID: 0}
+  verificationSound: {fileID: 0}
+  continueButton: {fileID: 0}
+  wireRepair: {fileID: 0}
+  puzzleManager: {fileID: 0}
 --- !u!114 &1173064304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35739,6 +35808,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticDoor
   door: {fileID: 7574141785852941234}
+  requiredSignalPorts: []
+  doorMessageUI: {fileID: 0}
+  doorMessageText: {fileID: 0}
+  lockedMessage: 'ACCESS DENIED
+
+    Activate both Signal Ports to unlock this room.'
 --- !u!1 &1217527350
 GameObject:
   m_ObjectHideFlags: 0
@@ -36275,6 +36350,9 @@ MonoBehaviour:
   redMaterial: {fileID: 2100000, guid: 6ec34ec7744f9df4fa579bd1b577a30a, type: 2}
   purpleMaterial: {fileID: 2100000, guid: 82ebdca28648695478ee4e0da10d12aa, type: 2}
   flickerDuration: 3
+  portAudio: {fileID: 0}
+  activationStartSound: {fileID: 0}
+  signalRestoredSound: {fileID: 0}
 --- !u!1 &1265433998
 GameObject:
   m_ObjectHideFlags: 0
@@ -36324,8 +36402,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371df4720b9db694880d4eadafeba555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ComputerInteractable
+  computerType: 0
+  displayMessage: 'MISSION OBJECTIVES
+
+
+    Explore the spaceship and restore communications.'
+  displayDuration: 5
   screenUI: {fileID: 1369219514}
+  computerMessage: {fileID: 0}
+  identityInput: {fileID: 0}
+  verifyButton: {fileID: 0}
+  objectivesPanel: {fileID: 0}
   door: {fileID: 0}
+  playerController: {fileID: 0}
+  computerAudio: {fileID: 0}
+  computerInteractionSound: {fileID: 0}
+  verificationSound: {fileID: 0}
+  continueButton: {fileID: 0}
+  wireRepair: {fileID: 0}
+  puzzleManager: {fileID: 0}
 --- !u!65 &1265434001
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37670,6 +37765,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticDoor
   door: {fileID: 8934950426682287501}
+  requiredSignalPorts: []
+  doorMessageUI: {fileID: 0}
+  doorMessageText: {fileID: 0}
+  lockedMessage: 'ACCESS DENIED
+
+    Activate both Signal Ports to unlock this room.'
 --- !u!1 &1604980106
 GameObject:
   m_ObjectHideFlags: 0
@@ -38095,6 +38196,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticDoor
   door: {fileID: 3312447211568369391}
+  requiredSignalPorts: []
+  doorMessageUI: {fileID: 0}
+  doorMessageText: {fileID: 0}
+  lockedMessage: 'ACCESS DENIED
+
+    Activate both Signal Ports to unlock this room.'
 --- !u!1 &1655915156
 GameObject:
   m_ObjectHideFlags: 0
@@ -48930,6 +49037,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticDoor
   door: {fileID: 4236766361970164045}
+  requiredSignalPorts: []
+  doorMessageUI: {fileID: 0}
+  doorMessageText: {fileID: 0}
+  lockedMessage: 'ACCESS DENIED
+
+    Activate both Signal Ports to unlock this room.'
 --- !u!1001 &1860277363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49404,6 +49517,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticDoor
   door: {fileID: 3435502041881705651}
+  requiredSignalPorts: []
+  doorMessageUI: {fileID: 0}
+  doorMessageText: {fileID: 0}
+  lockedMessage: 'ACCESS DENIED
+
+    Activate both Signal Ports to unlock this room.'
 --- !u!1 &1928448091
 GameObject:
   m_ObjectHideFlags: 0
@@ -50057,6 +50176,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticDoor
   door: {fileID: 6219650900820508029}
+  requiredSignalPorts: []
+  doorMessageUI: {fileID: 0}
+  doorMessageText: {fileID: 0}
+  lockedMessage: 'ACCESS DENIED
+
+    Activate both Signal Ports to unlock this room.'
 --- !u!1 &2064529394
 GameObject:
   m_ObjectHideFlags: 0
@@ -56533,12 +56658,14 @@ MonoBehaviour:
   crouchHeight: 1
   standHeight: 2
   crouchSpeed: 2.5
+  canMove: 1
   pickupRange: 3
   holdPoint: {fileID: 0}
   interactionDistance: 3
   playerCamera: {fileID: 6284695280002083233}
   interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   interactionPrompt: {fileID: 1200404494}
+  sprintSpeed: 8
 --- !u!1 &717987391169104809
 GameObject:
   m_ObjectHideFlags: 0
@@ -59417,12 +59544,12 @@ Transform:
   m_GameObject: {fileID: 7017840040735990279}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25759125, y: 0.81, z: -18.021091}
+  m_LocalPosition: {x: 34.44422, y: 0.81, z: -59.555}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8693561770378087476}
-  m_Father: {fileID: 4222285185834994084}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2716756320050912775
 GameObject:
@@ -60433,6 +60560,16 @@ MonoBehaviour:
   openPosition: {x: 0, y: 4.1, z: 0}
   openSpeed: 3
   requiresUnlock: 0
+  warningPanel: {fileID: 0}
+  warningText: {fileID: 0}
+  lockedMessage: 'ACCESS LOCKED
+
+
+    Interact with the computer terminal first.'
+  warningDuration: 3
+  doorAudio: {fileID: 0}
+  doorOpenSound: {fileID: 0}
+  doorCloseSound: {fileID: 0}
 --- !u!1 &3319396819132935946
 GameObject:
   m_ObjectHideFlags: 0
@@ -60644,6 +60781,16 @@ MonoBehaviour:
   openPosition: {x: 0, y: 4.1, z: 0}
   openSpeed: 3
   requiresUnlock: 0
+  warningPanel: {fileID: 0}
+  warningText: {fileID: 0}
+  lockedMessage: 'ACCESS LOCKED
+
+
+    Interact with the computer terminal first.'
+  warningDuration: 3
+  doorAudio: {fileID: 0}
+  doorOpenSound: {fileID: 0}
+  doorCloseSound: {fileID: 0}
 --- !u!33 &3462965826292760417
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -61604,7 +61751,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8119728815542658457}
-  - {fileID: 2716110670201157286}
   - {fileID: 4772104641969015761}
   - {fileID: 5158121493316582776}
   - {fileID: 7395091351428253601}
@@ -61674,6 +61820,16 @@ MonoBehaviour:
   openPosition: {x: 0, y: 4.1, z: 0}
   openSpeed: 3
   requiresUnlock: 0
+  warningPanel: {fileID: 0}
+  warningText: {fileID: 0}
+  lockedMessage: 'ACCESS LOCKED
+
+
+    Interact with the computer terminal first.'
+  warningDuration: 3
+  doorAudio: {fileID: 0}
+  doorOpenSound: {fileID: 0}
+  doorCloseSound: {fileID: 0}
 --- !u!114 &4249698888112059307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64549,6 +64705,16 @@ MonoBehaviour:
   openPosition: {x: 0, y: 4.1, z: 0}
   openSpeed: 3
   requiresUnlock: 0
+  warningPanel: {fileID: 0}
+  warningText: {fileID: 0}
+  lockedMessage: 'ACCESS LOCKED
+
+
+    Interact with the computer terminal first.'
+  warningDuration: 3
+  doorAudio: {fileID: 0}
+  doorOpenSound: {fileID: 0}
+  doorCloseSound: {fileID: 0}
 --- !u!33 &6230403507031919129
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -64590,6 +64756,16 @@ MonoBehaviour:
   openPosition: {x: 0, y: 4.1, z: 0}
   openSpeed: 3
   requiresUnlock: 1
+  warningPanel: {fileID: 0}
+  warningText: {fileID: 0}
+  lockedMessage: 'ACCESS LOCKED
+
+
+    Interact with the computer terminal first.'
+  warningDuration: 3
+  doorAudio: {fileID: 0}
+  doorOpenSound: {fileID: 0}
+  doorCloseSound: {fileID: 0}
 --- !u!1 &6254035067646054001
 GameObject:
   m_ObjectHideFlags: 0
@@ -66686,6 +66862,16 @@ MonoBehaviour:
   openPosition: {x: 0, y: 4.1, z: 0}
   openSpeed: 3
   requiresUnlock: 0
+  warningPanel: {fileID: 0}
+  warningText: {fileID: 0}
+  lockedMessage: 'ACCESS LOCKED
+
+
+    Interact with the computer terminal first.'
+  warningDuration: 3
+  doorAudio: {fileID: 0}
+  doorOpenSound: {fileID: 0}
+  doorCloseSound: {fileID: 0}
 --- !u!1 &7581234446780059199
 GameObject:
   m_ObjectHideFlags: 0
@@ -67944,6 +68130,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2f70c063-a02a-424e-8a63-2f200b4fa33c
     m_ActionName: 'Player/Crouch[/Keyboard/ctrl]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f319c8a7-f0d5-481e-b393-d15df3642933
+    m_ActionName: 'Player/Sprint[/Keyboard/shift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -67962,7 +68152,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   timer: 120
+  startingTime: 300
   timerText: {fileID: 34619898}
+  batteryFill: {fileID: 0}
+  batteryPercentageText: {fileID: 0}
+  fullBatteryColor: {r: 0.4392157, g: 0.8392157, b: 1, a: 1}
+  mediumBatteryColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  lowBatteryColor: {r: 1, g: 0, b: 0, a: 1}
   startMenuSceneName: MainMenu
   gameOverDelay: 2
 --- !u!114 &8344733665762002373
@@ -68236,6 +68432,16 @@ MonoBehaviour:
   openPosition: {x: 0, y: 4.1, z: 0}
   openSpeed: 3
   requiresUnlock: 0
+  warningPanel: {fileID: 0}
+  warningText: {fileID: 0}
+  lockedMessage: 'ACCESS LOCKED
+
+
+    Interact with the computer terminal first.'
+  warningDuration: 3
+  doorAudio: {fileID: 0}
+  doorOpenSound: {fileID: 0}
+  doorCloseSound: {fileID: 0}
 --- !u!65 &8510545843873104366
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68753,6 +68959,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutomaticDoor
   door: {fileID: 8499902239148450350}
+  requiredSignalPorts: []
+  doorMessageUI: {fileID: 0}
+  doorMessageText: {fileID: 0}
+  lockedMessage: 'ACCESS DENIED
+
+    Activate both Signal Ports to unlock this room.'
 --- !u!65 &8713276363362475624
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69141,6 +69353,16 @@ MonoBehaviour:
   openPosition: {x: 0, y: 4.1, z: 0}
   openSpeed: 3
   requiresUnlock: 0
+  warningPanel: {fileID: 0}
+  warningText: {fileID: 0}
+  lockedMessage: 'ACCESS LOCKED
+
+
+    Interact with the computer terminal first.'
+  warningDuration: 3
+  doorAudio: {fileID: 0}
+  doorOpenSound: {fileID: 0}
+  doorCloseSound: {fileID: 0}
 --- !u!1 &8940213904121194422
 GameObject:
   m_ObjectHideFlags: 0
@@ -69407,6 +69629,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 2716110670201157286}
   - {fileID: 4222285185834994084}
   - {fileID: 1164183800}
   - {fileID: 2132012452}

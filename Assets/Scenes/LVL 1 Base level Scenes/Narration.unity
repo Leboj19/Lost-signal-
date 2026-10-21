@@ -599,8 +599,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1072,11 +1072,11 @@ MonoBehaviour:
   lines:
   - 'Mother Ship to Rs-Q2... '
   - ...Do you copy ?
-  - The central servers are down, Rs-Q2
+  - The central servers are down, RS-Q2
   - 'Do you copy? '
   - It seems communication is unidirectional
-  - 'Listen Rs-Q2, The Signal has affected your power source '
-  - You will only have 3 Minutes Until Your system shuts down-
+  - 'Listen RS-Q2, The Signal has affected your power source '
+  - You will only have 5 Minutes Until Your system shuts down-
   - 'A- acquire anything you can, anything salvagable to restore the signal- '
   - 'My Server tells me there are 3 Computer Chips and a PLasma battery. '
   - Locate them and take them to the Signal Port of the space ship

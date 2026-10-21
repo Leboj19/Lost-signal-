@@ -12,12 +12,18 @@ public class Timer : MonoBehaviour
 
 
     [Header("Robot Battery HUD")]
-    public  Image batteryFill;
+    public Image batteryFill;
     public TextMeshProUGUI batteryPercentageText;
 
     public Color fullBatteryColor = new Color32(112, 214, 255, 255);
     public Color mediumBatteryColor = Color.yellow;
     public Color lowBatteryColor = Color.red;
+
+    [Header("Emergency Power Warning")]
+    public TextMeshProUGUI powerWarningText;
+
+    private bool powerWarningShown = false;
+
 
 
 
@@ -28,7 +34,7 @@ public class Timer : MonoBehaviour
     public float gameOverDelay = 2f;
 
     private bool gameOver = false;
-    
+
 
     void Start()
     {
@@ -64,23 +70,40 @@ public class Timer : MonoBehaviour
                 {
                     timerText.color= Color.red;
                 }*/
+        if (timer <= 240f && !powerWarningShown)
+        {
+            powerWarningShown = true;
+
+            if (powerWarningText != null)
+            {
+                powerWarningText.text =
+                    "POWER WARNING!\n" +
+                    "Robot battery reserves are dropping.\n" +
+                    "Find the emergency power computer and " +
+                    "repair its wiring to gain +30 seconds.";
+
+                powerWarningText.gameObject.SetActive(true);
+
+                StartCoroutine(HidePowerWarning());
+            }
+        }
 
         if (timer < 0f)
         {
             timer = 0f; // THIS IS TO MAKE SURE THE TIMER DOESNT GO PAST ZERO
             gameOver = true;
-            
-            if(timerText != null)
-            timerText.text = "GAME OVER!";
+
+            if (timerText != null)
+                timerText.text = "GAME OVER!";
 
             UpdateBattery();
 
             Time.timeScale = 0f;
 
             Invoke("ReturnToMainMenu", gameOverDelay);
-            
+
             Debug.Log("Game Over!");
-            
+
             return;
 
         }
@@ -88,9 +111,9 @@ public class Timer : MonoBehaviour
         UpdateBattery();
 
 
-       
 
-        
+
+
 
     }
     void UpdateTimerText()
@@ -102,11 +125,11 @@ public class Timer : MonoBehaviour
         // Convert seconds into minutes and seconds
         int minutes = Mathf.FloorToInt(timer / 60f);
         int seconds = Mathf.FloorToInt(timer % 60f);
-       
+
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
     }
-    public void AddTime (float seconds)
+    public void AddTime(float seconds)
     {
         if (gameOver || seconds <= 0f)
             return;
@@ -123,13 +146,13 @@ public class Timer : MonoBehaviour
     {
         float battery = Mathf.Clamp01(timer / startingTime);
 
-        if(batteryFill != null)
+        if (batteryFill != null)
         {
             batteryFill.fillAmount = battery;
 
             if (battery <= 0.2f)
                 batteryFill.color = lowBatteryColor;
-            else if(battery <= 0.5f)
+            else if (battery <= 0.5f)
                 batteryFill.color = mediumBatteryColor;
             else
                 batteryFill.color = fullBatteryColor;
@@ -150,7 +173,7 @@ public class Timer : MonoBehaviour
 
         FPController player = FindFirstObjectByType<FPController>();
 
-        if(player != null)
+        if (player != null)
         {
             player.StopPlayer();
         }
@@ -169,9 +192,18 @@ public class Timer : MonoBehaviour
     private IEnumerator ReturnToMainMenu()
     {
         yield return new WaitForSecondsRealtime(5f);
-        
+
         Time.timeScale = 1f;
 
         SceneManager.LoadScene("Main Menu");
+    }
+    private IEnumerator HidePowerWarning()
+    {
+        yield return new WaitForSecondsRealtime(7f);
+
+        if (powerWarningText != null)
+        {
+            powerWarningText.gameObject.SetActive(false);
+        }
     }
 }
