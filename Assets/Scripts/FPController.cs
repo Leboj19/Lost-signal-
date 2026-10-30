@@ -30,11 +30,11 @@ public class FPController : MonoBehaviour
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector2 lookInput;
+
+    public bool canMove = true; // Determines if the player can move or not.
     private Vector3 velocity; // Stores the player's current vertical movement, including gravity.
     private float verticalRotation = 0f;
     // Awake runs once when the GameObject is first loaded.
-
-    private bool gameFinished = false;
 
     [Header("Pickup Settings")]
     public float pickupRange = 3f;
@@ -42,7 +42,7 @@ public class FPController : MonoBehaviour
     private PickupObject heldObject;
 
     [Header("Interaction")]
-    public float interactionDistance = 1f;
+    public float interactionDistance = 3f;
     public Camera playerCamera;
     public InputActionReference interactAction;
 
@@ -59,9 +59,23 @@ public class FPController : MonoBehaviour
     }
     private void Update()
     {
-        if (gameFinished)
+        if (!canMove)
+        {//Stop movement and looking if the player is not allowed to move.
+            moveInput = Vector2.zero;
+            lookInput = Vector2.zero;
+
+            if(interactionPrompt != null)interactionPrompt.SetActive(false);
+
+            if (controller.isGrounded && velocity.y < 0)
+            {
+                velocity.y = -2f; // Keeps the player grounded when not moving.
+            }
+            velocity.y += gravity * Time.deltaTime; // Applies gravity to the player.
+            controller.Move(velocity * Time.deltaTime); // Moves the player based on gravity.
+
             return;
-        
+
+        }
         HandleMovement();
         HandleLook();
         CheckForInteraction();
@@ -75,7 +89,7 @@ public class FPController : MonoBehaviour
         {
             OnInteract();
         }
-
+    
 
 
 
@@ -210,6 +224,7 @@ public class FPController : MonoBehaviour
 
     public void OnInteract()
     {
+        if(!canMove) return;
         Ray ray = new Ray(
        cameraTransform.position,
        cameraTransform.forward
@@ -268,21 +283,6 @@ public class FPController : MonoBehaviour
 
         interactionPrompt.SetActive(false);
 
-    }
-    public void StopPlayer()
-    {
-        gameFinished = true;
-
-        moveInput = Vector2.zero;
-        lookInput = Vector2.zero;
-
-        velocity = Vector3.zero;
-
-        if(interactionPrompt != null)
-        {
-            interactionPrompt.SetActive(false);
-        }
-        Debug.Log("PLAYER FROZEN.");
     }
 }
 
