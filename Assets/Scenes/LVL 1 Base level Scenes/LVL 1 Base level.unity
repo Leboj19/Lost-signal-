@@ -49996,6 +49996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   pauseMenu: {fileID: 839080740}
   settingsMenu: {fileID: 0}
+  volumeSlider: {fileID: 0}
 --- !u!4 &2064529396
 Transform:
   m_ObjectHideFlags: 0
