@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class WordPuzzle : MonoBehaviour
 {
@@ -20,11 +21,12 @@ public class WordPuzzle : MonoBehaviour
     public string correctWord = "SPACESHIP";
 
   private bool puzzleOpen = false;
+    private Coroutine feedbackCoroutine;
 
   void Start()
     {
       // OpenPuzzle();
-      if((puzzleCanvas != null))
+      if(puzzleCanvas != null)
        puzzleCanvas.SetActive(false);
        
         Cursor.lockState = CursorLockMode.Locked;
@@ -51,24 +53,52 @@ public class WordPuzzle : MonoBehaviour
     }
     public void OpenPuzzle()
     {
+       if(puzzleCanvas == null || inputField == null)
+        {
+            Debug.LogWarning("Wordpuzzle: Assign the puzzle Canvas and Input Field.");
+            return;
+        }
+        
         puzzleCanvas.SetActive(true);
         puzzleOpen = true;
+        
+        if (playerMovement != null)
         playerMovement.canMove = false;
+        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        if(feedbackCoroutine != null)
+        {
+            StopCoroutine(feedbackCoroutine);
+            feedbackCoroutine = null;
+        }
+        inputField.interactable = true;
         inputField.text = "";
-        feedbackText.text = "";
 
+        if (feedbackText != null)
+            feedbackText.text = "";
+
+      
         inputField.ActivateInputField();
         inputField.Select();
 
     }
     public void ClosePuzzle()
     {
+       if(feedbackCoroutine != null)
+        {
+            StopCoroutine(feedbackCoroutine);
+            feedbackCoroutine = null;
+        }
+        if(puzzleCanvas !=null)
         puzzleCanvas.SetActive(false);
+        
         puzzleOpen = false;
+       
+        if(playerMovement != null)
         playerMovement.canMove = true;
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
@@ -76,11 +106,16 @@ public class WordPuzzle : MonoBehaviour
     }
     public void CheckAnswer()
     {
-        string answer = inputField.text;
+        if (!puzzleOpen || inputField == null)
+            return;
+       
+        string answer = inputField.text.Trim();
 
-        if (string.Equals(answer, correctWord, System.StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(answer, correctWord.Trim(), System.StringComparison.OrdinalIgnoreCase))
         {
             Debug.Log("Correct answer!");
+           
+            if (feedbackText != null)
             feedbackText.text = "Door unlocked!";
 
             if (doorController != null)
@@ -91,13 +126,39 @@ public class WordPuzzle : MonoBehaviour
 
             ClosePuzzle();
 
-        
+
         }
         else
         {
             Debug.Log("Incorrect");
+            
+            if(feedbackText != null)
             feedbackText.text = "Incorrect";
             
+
+            if (feedbackCoroutine != null)
+            StopCoroutine(feedbackCoroutine);
+            
+            feedbackCoroutine = StartCoroutine(ClearIncorrectMessage());
+
+        }
+    }
+        private IEnumerator ClearIncorrectMessage()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+
+        if (feedbackText != null)
+        {
+            feedbackText.text = "";
+        }
+
+        feedbackCoroutine = null;
+
+        if (inputField != null && puzzleOpen)
+        {
+            inputField.interactable = true;
+            inputField.ActivateInputField();
+            inputField.Select();
         }
     }
 

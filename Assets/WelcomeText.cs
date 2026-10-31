@@ -9,34 +9,50 @@ public class WelcomeText : MonoBehaviour
     
     [Header("Timing Settings")]
     public float timeBetweenCharacters = 0.05f; 
-    public float visibleDuration = 3f;          
+    public float visibleDuration = 3f;
 
-            
+    private Coroutine typingCoroutine;
+
+
 
     private void Start()
     {
     
-        ShowMessage(@"RS-Q2 SYSTEM ONLINE.
-MOTHER SHIP SIGNAL STATUS: LOST
-
-WELCOME ABOARD.");
+        ShowMessage(@"WELCOME ABOARD,<color=red><b>RS-Q2</b></color> SYSTEM ONLINE.
+MOTHER SHIP SIGNAL STATUS: LOST");
     }
 
     public void ShowMessage(string message)
     {
-        StartCoroutine(TypewriterRoutine(message));
+        if(typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+        }
+        
+        typingCoroutine = StartCoroutine(TypewriterRoutine(message));
     }
 
     private IEnumerator TypewriterRoutine(string message)
     {
-
-        messageText.text = "";
+        if (messageText == null)
+        {
+            Debug.LogWarning("WelcomeText: Message Text is not assigned!");
+            yield break;
+        }
+       
         messageText.gameObject.SetActive(true);
 
-   
-        foreach (char letter in message.ToCharArray())
+        messageText.text = message;
+        messageText.maxVisibleCharacters = 0;
+
+        messageText.ForceMeshUpdate();
+
+        int totalCharacters = messageText.textInfo.characterCount;
+
+
+        for (int i =0; i< totalCharacters; i++)
         {
-            messageText.text += letter;
+            messageText.maxVisibleCharacters = i + 1;
 
             yield return new WaitForSeconds(timeBetweenCharacters);
         }
@@ -44,5 +60,8 @@ WELCOME ABOARD.");
         yield return new WaitForSeconds(visibleDuration);
 
         messageText.gameObject.SetActive(false);
+        messageText.maxVisibleCharacters = int.MaxValue;
+        typingCoroutine = null;
     }
+
 }

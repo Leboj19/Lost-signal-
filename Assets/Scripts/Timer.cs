@@ -19,19 +19,23 @@ public class Timer : MonoBehaviour
     public Color mediumBatteryColor = Color.yellow;
     public Color lowBatteryColor = Color.red;
 
+    
     [Header("Emergency Power Warning")]
     public TextMeshProUGUI powerWarningText;
 
     private bool powerWarningShown = false;
 
 
-
-
-
-
-    [Header("Game Over")]
+ [Header("Game Over")]
     public string startMenuSceneName = "Main Menu";
     public float gameOverDelay = 2f;
+
+    
+    [Header("Victory Screen")]
+    public GameObject victoryPanel;
+    public float victoryScreenDelay = 5f;
+
+
 
     private bool gameOver = false;
 
@@ -42,6 +46,16 @@ public class Timer : MonoBehaviour
         timer = startingTime; // THIS SETS THE TIMER TO 60 SECONDS AT THE START OF THE GAME SO IT COUNTS DOWN
 
         Time.timeScale = 1f;
+
+        if(victoryPanel != null)
+        {
+            victoryPanel.SetActive(false);
+        }
+
+        if (powerWarningText != null)
+        {
+            powerWarningText.gameObject.SetActive(false);
+        }
 
         UpdateBattery();
         UpdateTimerText();
@@ -98,13 +112,13 @@ public class Timer : MonoBehaviour
 
             UpdateBattery();
 
-            Time.timeScale = 0f;
-
-            Invoke("ReturnToMainMenu", gameOverDelay);
-
             Debug.Log("Game Over!");
 
+            StartCoroutine(GameOverSequence());
+
             return;
+
+        
 
         }
         UpdateTimerText();
@@ -181,17 +195,43 @@ public class Timer : MonoBehaviour
         {
             Debug.LogWarning("  FPController not found!");
         }
+       
+        if (timerText != null)
+        {
+            timerText.text = "MISSION COMPLETE!";
+        }
+
+        if (powerWarningText != null)
+        {
+            powerWarningText.gameObject.SetActive(false); 
+        }
+
+        if (victoryPanel != null)
+        {
+            victoryPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("ALL OBJECTIVES COMPLETED - GAME FINISHED!");
+        }
 
         Time.timeScale = 0f;
 
-        timerText.text = "MISSION COMPLETE!";
-        Debug.Log("ALL OBJECTIVES COMPLETED - GAME FINISHED!");
+      StartCoroutine(ReturnToMainMenu());
+    }
+    private IEnumerator GameOverSequence()
+    {
+        yield return new WaitForSecondsRealtime(gameOverDelay);
 
-        StartCoroutine(ReturnToMainMenu());
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene("Main Menu");
     }
     private IEnumerator ReturnToMainMenu()
     {
-        yield return new WaitForSecondsRealtime(5f);
+        Time.timeScale = 0f;
+        
+        yield return new WaitForSecondsRealtime(victoryScreenDelay);
 
         Time.timeScale = 1f;
 

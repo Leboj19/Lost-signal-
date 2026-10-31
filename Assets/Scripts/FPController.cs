@@ -46,7 +46,7 @@ public class FPController : MonoBehaviour
     private PickupObject heldObject;
 
     [Header("Interaction")]
-    public float interactionDistance = 1f;
+    public float interactionDistance = 3f;
     public Camera playerCamera;
     public InputActionReference interactAction;
 
@@ -290,6 +290,9 @@ public class FPController : MonoBehaviour
     }
     void CheckForInteraction()
     {
+        if (interactionPrompt == null || cameraTransform == null)
+            return;
+
         Ray ray = new Ray(
             cameraTransform.position,
             cameraTransform.forward
@@ -305,6 +308,7 @@ public class FPController : MonoBehaviour
             if (interactable != null)
             {
                 interactionPrompt.SetActive(true);
+
                 InteractionPromptText prompt =
                hit.collider.GetComponent<InteractionPromptText>();
 
