@@ -26,9 +26,10 @@ public class Timer : MonoBehaviour
     private bool powerWarningShown = false;
 
 
- [Header("Game Over")]
+    [Header("Game Over")]
+    public GameObject gameOverPanel;
     public string startMenuSceneName = "Main Menu";
-    public float gameOverDelay = 2f;
+    public string retrySceneName = "LVL 1 Base Level";
 
     
     [Header("Victory Screen")]
@@ -47,7 +48,13 @@ public class Timer : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        if(victoryPanel != null)
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
+        }
+
+
+        if (victoryPanel != null)
         {
             victoryPanel.SetActive(false);
         }
@@ -102,20 +109,10 @@ public class Timer : MonoBehaviour
             }
         }
 
-        if (timer < 0f)
+        if (timer <= 0f)
         {
             timer = 0f; // THIS IS TO MAKE SURE THE TIMER DOESNT GO PAST ZERO
-            gameOver = true;
-
-            if (timerText != null)
-                timerText.text = "GAME OVER!";
-
-            UpdateBattery();
-
-            Debug.Log("Game Over!");
-
-            StartCoroutine(GameOverSequence());
-
+            GameOver();
             return;
 
         
@@ -177,7 +174,54 @@ public class Timer : MonoBehaviour
             batteryPercentageText.text = percentage + "%";
         }
     }
+    public void GameOver()
+    {
+        if (gameOver)
+            return;
 
+        gameOver = true;
+        timer = 0f;
+
+        if(timerText != null)
+        {
+            timerText.text = "GAME OVER!";
+        }
+        if (powerWarningText != null)
+        {
+            powerWarningText.gameObject.SetActive(false);
+        }
+        
+        UpdateBattery();
+
+        FPController player = FindFirstObjectByType<FPController>();
+
+        if (player != null)
+        {
+            player.StopPlayer();
+        }
+        
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("Game Over Panel is not assigned!");
+        }
+        Time.timeScale = 0f;
+
+        Debug.Log("MISSION FAILED - GAME OVER!");
+    }
+    public void RetryLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(retrySceneName);
+    }
+    public void ReturnToMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(startMenuSceneName);
+    }
     public void GameCompleted()
     {
         if (gameOver)
@@ -219,14 +263,7 @@ public class Timer : MonoBehaviour
 
       StartCoroutine(ReturnToMainMenu());
     }
-    private IEnumerator GameOverSequence()
-    {
-        yield return new WaitForSecondsRealtime(gameOverDelay);
-
-        Time.timeScale = 1f;
-
-        SceneManager.LoadScene("Main Menu");
-    }
+   
     private IEnumerator ReturnToMainMenu()
     {
         Time.timeScale = 0f;

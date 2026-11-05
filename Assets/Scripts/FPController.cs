@@ -365,6 +365,10 @@ public class FPController : MonoBehaviour
             interactionPrompt.SetActive(false);
         }
         Debug.Log("PLAYER FROZEN.");
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
     }
 }
 
