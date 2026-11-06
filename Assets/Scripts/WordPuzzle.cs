@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using System.Collections;
 
 public class WordPuzzle : MonoBehaviour
@@ -9,6 +10,7 @@ public class WordPuzzle : MonoBehaviour
     public GameObject puzzleCanvas;
     public TMP_InputField inputField;
     public TMP_Text feedbackText;
+    public Button exitButton;
    
     [Header("Player and Door")]
     public FPController playerMovement;
@@ -26,21 +28,17 @@ public class WordPuzzle : MonoBehaviour
   void Start()
     {
       // OpenPuzzle();
-      if(puzzleCanvas != null)
+      if (puzzleCanvas != null)
        puzzleCanvas.SetActive(false);
-       
-        Cursor.lockState = CursorLockMode.Locked;
-       Cursor.visible = false;
 
-
-
+        if (exitButton != null)
+            exitButton.onClick.AddListener(ClosePuzzle);
     }
     void LateUpdate()
     {
-       if(puzzleOpen)
+       if(puzzleOpen && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            ClosePuzzle();
         }
        
     }
@@ -63,16 +61,20 @@ public class WordPuzzle : MonoBehaviour
         puzzleOpen = true;
         
         if (playerMovement != null)
-        playerMovement.canMove = false;
+        playerMovement.SetGameplayInputBlocked(true);
         
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        
         if(feedbackCoroutine != null)
         {
             StopCoroutine(feedbackCoroutine);
             feedbackCoroutine = null;
         }
+        
         inputField.interactable = true;
         inputField.text = "";
 
@@ -86,23 +88,27 @@ public class WordPuzzle : MonoBehaviour
     }
     public void ClosePuzzle()
     {
-       if(feedbackCoroutine != null)
+        if (!puzzleOpen)
+            return;
+        
+        if(feedbackCoroutine != null)
         {
             StopCoroutine(feedbackCoroutine);
             feedbackCoroutine = null;
         }
+       
         if(puzzleCanvas !=null)
         puzzleCanvas.SetActive(false);
         
         puzzleOpen = false;
        
         if(playerMovement != null)
-        playerMovement.canMove = true;
-        
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        
-        
+            playerMovement.SetGameplayInputBlocked(false);
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
     public void CheckAnswer()
     {
