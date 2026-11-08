@@ -2,7 +2,20 @@ using UnityEngine;
 
 public class FinalSignalPort : MonoBehaviour, IInteractable
 {
+    [Header("Communication Room")]
+
     public CommunicationRoomController communicationRoom;
+
+    [Header("Port Audio")]
+    // Component inserted: Mixkit, "Interface device click"
+    // Source: https://mixkit.co/free-sound-effects/technology/
+    public AudioSource portAudio;
+    public AudioClip componentInsertedSound;
+    
+    // Port activated: Mixkit, "Machine activation short"
+    // Source: https://mixkit.co/free-sound-effects/high-tech/
+    public AudioClip activationSound;
+
 
     private bool chipInserted = false;
     private bool batteryInserted = false;
@@ -10,7 +23,7 @@ public class FinalSignalPort : MonoBehaviour, IInteractable
     public void Interact()
     {
         Debug.Log("FINAL SIGNAL PORT INTERACTED!");
-        
+
         SignalInventory inventory =
             FindFirstObjectByType<SignalInventory>();
 
@@ -31,9 +44,9 @@ public class FinalSignalPort : MonoBehaviour, IInteractable
             chipInserted = true;
 
             Debug.Log("Signal Chip inserted!");
+            PlaySound(componentInsertedSound);
 
             CheckIfComplete();
-
             return;
         }
         //SHOWS WHEN PLAYER INSERTS BATTERY.
@@ -44,12 +57,12 @@ public class FinalSignalPort : MonoBehaviour, IInteractable
             batteryInserted = true;
 
             Debug.Log("Battery inserted!");
+            PlaySound(componentInsertedSound);
 
             CheckIfComplete();
-
             return;
         }
-        
+
         Debug.Log("NO REQUIRED COMPONENT AVAILABLE.");
 
         //IF PLAYER HAS NOTHING
@@ -57,12 +70,12 @@ public class FinalSignalPort : MonoBehaviour, IInteractable
         {
             Debug.Log("You need the Signal Chip and Battery!");
         }
-        
+
         else if (!chipInserted)
         {
             Debug.Log("You still need the Signal Chip!");
         }
-        
+
         else if (!batteryInserted)
         {
             Debug.Log("You still need the Battery!");
@@ -78,8 +91,20 @@ public class FinalSignalPort : MonoBehaviour, IInteractable
             {
                 communicationRoom.SystemReady();
             }
+            else
+            {
+                Debug.LogWarning("CommunicationRoomController is not assigned!");
+            }
+
+        }
+
+
+    }
+    private void PlaySound(AudioClip clip)
+    {
+        if(portAudio != null && clip != null)
+        {
+            portAudio.PlayOneShot(clip);
         }
     }
-
-
 }

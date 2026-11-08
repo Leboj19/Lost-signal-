@@ -11,14 +11,33 @@ public class LowTimeEffect : MonoBehaviour
 
     void Start()
     {
+        if (timerScript == null)
+            timerScript = FindFirstObjectByType<Timer>();
+
+        if (volume == null)
+            volume = GetComponent<Volume>();
+
+        if (timerScript == null || volume == null || volume.profile == null)
+        {
+            Debug.LogError("Timer or Volume is missing");
+            enabled = false;
+            return;
+        }
+            
+
+
         volume.profile.TryGet(out vignette);
 
         volume.profile.TryGet(out colorAdjustments);
     }
-    // Update is called once per frame
+   
     void Update()
     {
+        if (timerScript == null)
+            return; 
+
         float timerValue = timerScript.timer; // Get the current timer value from the Timer script
+        
         if (timerValue > 120f)
         {
             vignette.intensity.value = 0f; // No vignette effect
