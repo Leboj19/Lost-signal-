@@ -19132,7 +19132,7 @@ MonoBehaviour:
   purpleMaterial: {fileID: 2100000, guid: 82ebdca28648695478ee4e0da10d12aa, type: 2}
   flickerDuration: 3
   portAudio: {fileID: 369098573}
-  activationStartSound: {fileID: 8300000, guid: b95eab69df287b34e96d3ef4de746b6e, type: 3}
+  activationStartSound: {fileID: 8300000, guid: 6b4ae6b48f9d8834eb241f72d342fdab, type: 3}
   signalRestoredSound: {fileID: 8300000, guid: dbc579bf1307fc0498ebb1a1192c6fde, type: 3}
 --- !u!114 &369098571
 MonoBehaviour:
@@ -43557,7 +43557,7 @@ MonoBehaviour:
   purpleMaterial: {fileID: 2100000, guid: 82ebdca28648695478ee4e0da10d12aa, type: 2}
   flickerDuration: 3
   portAudio: {fileID: 1255652076}
-  activationStartSound: {fileID: 8300000, guid: b95eab69df287b34e96d3ef4de746b6e, type: 3}
+  activationStartSound: {fileID: 8300000, guid: 6b4ae6b48f9d8834eb241f72d342fdab, type: 3}
   signalRestoredSound: {fileID: 8300000, guid: dbc579bf1307fc0498ebb1a1192c6fde, type: 3}
 --- !u!82 &1255652076
 AudioSource:
