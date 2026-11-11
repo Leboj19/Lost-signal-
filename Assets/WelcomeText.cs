@@ -5,10 +5,10 @@ using TMPro;
 public class WelcomeText : MonoBehaviour
 {
     [Header("UI Elements")]
-    public TextMeshProUGUI messageText; 
-    
+    public TextMeshProUGUI messageText;
+
     [Header("Timing Settings")]
-    public float timeBetweenCharacters = 0.05f; 
+    public float timeBetweenCharacters = 0.05f;
     public float visibleDuration = 3f;
 
     private Coroutine typingCoroutine;
@@ -17,18 +17,20 @@ public class WelcomeText : MonoBehaviour
 
     private void Start()
     {
-    
-        ShowMessage(@"WELCOME ABOARD,<color=red><b>RS-Q2</b></color> SYSTEM ONLINE.
-MOTHER SHIP SIGNAL STATUS: LOST");
+
+        ShowMessage(@"<color=red><b>RS-Q2</b></color> SYSTEM ONLINE.
+MOTHER SHIP SIGNAL STATUS: LOST
+
+WELCOME ABOARD.");
     }
 
     public void ShowMessage(string message)
     {
-        if(typingCoroutine != null)
+        if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
         }
-        
+
         typingCoroutine = StartCoroutine(TypewriterRoutine(message));
     }
 
@@ -39,7 +41,7 @@ MOTHER SHIP SIGNAL STATUS: LOST");
             Debug.LogWarning("WelcomeText: Message Text is not assigned!");
             yield break;
         }
-       
+
         messageText.gameObject.SetActive(true);
 
         messageText.text = message;
@@ -50,7 +52,7 @@ MOTHER SHIP SIGNAL STATUS: LOST");
         int totalCharacters = messageText.textInfo.characterCount;
 
 
-        for (int i =0; i< totalCharacters; i++)
+        for (int i = 0; i < totalCharacters; i++)
         {
             messageText.maxVisibleCharacters = i + 1;
 

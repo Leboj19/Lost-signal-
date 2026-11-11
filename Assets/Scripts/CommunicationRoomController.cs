@@ -75,9 +75,7 @@ public class CommunicationRoomController : MonoBehaviour
         {
             screenPrompt.SetActive(true);
             PlaySound(systemReadySound);
-
         }
-        
     }
     public void StartCommunication()
     {
@@ -91,8 +89,6 @@ public class CommunicationRoomController : MonoBehaviour
             return;
 
         sequenceStarted = true;
-
-      
 
         StartCoroutine(RestorationSequence());
     }
@@ -109,7 +105,6 @@ public class CommunicationRoomController : MonoBehaviour
         {
             screenText.text = "RESTORING SIGNAL....";
         }
-       
 
         yield return new WaitForSeconds(2f);
 
@@ -158,9 +153,8 @@ public class CommunicationRoomController : MonoBehaviour
         if (screenText != null)
         {
             screenText.text = "SIGNAL RESTORED\n\nCOMMUNICATION LINK ESTABLISHED";
-           
+            PlaySound(communicationCompleteSound);
         }
-        PlaySound(communicationCompleteSound);
 
         yield return new WaitForSeconds(3f);
 

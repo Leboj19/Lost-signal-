@@ -18,12 +18,21 @@ public class NarrationScript : MonoBehaviour
 
     void Start()
     {
+        if (lines == null || lines.Length == 0)
+        {
+            Debug.LogWarning("NarrationScript: no lines assigned.");
+            finished = true;
+            return;
+        }
+
+        dialogueText.richText = true;
         StartTyping();
     }
 
     void Update()
     {
         if (finished) return;
+        if (Keyboard.current == null) return;
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
@@ -45,11 +54,19 @@ public class NarrationScript : MonoBehaviour
     IEnumerator TypeLine()
     {
         isTyping = true;
-        dialogueText.text = "";
 
-        foreach (char letter in lines[currentLine])
+        // Put the whole line in at once, but show none of it yet.
+        // TextMeshPro reads the <color> tags itself and hides them.
+        dialogueText.text = lines[currentLine];
+        dialogueText.maxVisibleCharacters = 0;
+        dialogueText.ForceMeshUpdate();
+
+        // characterCount only counts visible characters, not tags
+        int total = dialogueText.textInfo.characterCount;
+
+        for (int i = 1; i <= total; i++)
         {
-            dialogueText.text += letter;
+            dialogueText.maxVisibleCharacters = i;
             yield return new WaitForSeconds(typingSpeed);
         }
 
@@ -65,7 +82,7 @@ public class NarrationScript : MonoBehaviour
             typingCoroutine = null;
         }
 
-        dialogueText.text = lines[currentLine];
+        dialogueText.maxVisibleCharacters = int.MaxValue;   // show the whole line
         isTyping = false;
     }
 
@@ -81,7 +98,7 @@ public class NarrationScript : MonoBehaviour
             finished = true;
             dialogueText.gameObject.SetActive(false);
             if (StaticScript != null)
-               StaticScript.Show();
+                StaticScript.Show();
         }
     }
 }

@@ -47718,7 +47718,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -48897,7 +48897,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -54355,7 +54355,6 @@ MonoBehaviour:
   puzzleCanvas: {fileID: 1777927756}
   inputField: {fileID: 1329672509}
   feedbackText: {fileID: 1535001164}
-  exitButton: {fileID: 2055723448}
   playerMovement: {fileID: 672545533970918015}
   doorController: {fileID: 8934950426682287501}
   correctWord: SPACESHIP
@@ -62545,7 +62544,6 @@ MonoBehaviour:
   - {fileID: 1561769562}
   progressText: {fileID: 1516253792}
   messageText: {fileID: 63241268}
-  exitButton: {fileID: 823342247}
   leftWireIds: 000000000100000002000000
   rightWireIds: 020000000000000001000000
   playerController: {fileID: 672545533970918015}
@@ -82555,11 +82553,8 @@ MonoBehaviour:
   mediumBatteryColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   lowBatteryColor: {r: 1, g: 0, b: 0, a: 1}
   powerWarningText: {fileID: 1796387485}
-  gameOverPanel: {fileID: 282849540}
   startMenuSceneName: Main Menu
-  retrySceneName: LVL 1 Base Level
-  victoryPanel: {fileID: 46247607}
-  victoryScreenDelay: 5
+  gameOverDelay: 2
 --- !u!114 &8344733665762002373
 MonoBehaviour:
   m_ObjectHideFlags: 0

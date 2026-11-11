@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.InputSystem;
 
 
 public class WireRepairMinigame : MonoBehaviour
@@ -13,7 +12,6 @@ public class WireRepairMinigame : MonoBehaviour
     public Image[] wireLines;
     public TextMeshProUGUI progressText;
     public TextMeshProUGUI messageText;
-    public Button exitButton;
 
     [Header("Wire Matching")]
     //0 = Green, 1= Black , 2 = Red
@@ -46,19 +44,7 @@ public class WireRepairMinigame : MonoBehaviour
         wireLines[1].color = Color.black;
         wireLines[2].color = Color.red;
 
-        if (exitButton != null)
-        {
-            exitButton.onClick.AddListener(Close);
-        }
-
         repairPanel.SetActive(false);
-    }
-    public void Update()
-    {
-        if(isOpen && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            Close();
-        }
     }
     public void Open( WireRepairInteractable screen)
     {
