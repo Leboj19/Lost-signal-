@@ -1213,12 +1213,12 @@ MonoBehaviour:
   typingSpeed: 0.09
   StaticScript: {fileID: 533558342}
   lines:
-  - 'Mother Ship to <color="red">Rs-Q2</color> '
+  - 'Mother Ship to <color=red>Rs-Q2</color> '
   - ...Do you copy ?
-  - The central servers are down, <color="red">RS-Q2</color>
+  - "The central servers are down, \n<color=red>RS-Q2</color>"
   - 'Do you copy? '
   - It seems communication is unidirectional
-  - 'Listen <color="red">RS-Q2</color>
+  - 'Listen <color=red>RS-Q2</color>
 
     The Signal has affected your power source '
   - You will only have 5 Minutes Until Your system shuts down
