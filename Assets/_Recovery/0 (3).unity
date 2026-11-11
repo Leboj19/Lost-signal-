@@ -1081,143 +1081,6 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -678588488315902003, guid: 759c04548b309d54b901f31b727c60eb, type: 3}
   m_PrefabInstance: {fileID: 1608086607}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &84982903
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 84982904}
-  - component: {fileID: 84982906}
-  - component: {fileID: 84982905}
-  m_Layer: 5
-  m_Name: ObejctiveReminder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &84982904
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84982903}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 614}
-  m_LocalScale: {x: 1.0514069, y: 1.0514069, z: 1.0514069}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 933966225}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 890, y: -260}
-  m_SizeDelta: {x: 1480.7, y: 0}
-  m_Pivot: {x: 1, y: 0.5}
---- !u!114 &84982905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84982903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: "\n\nREMEMBER:\n       - Signal chips (X3)\n        -Battery (x1)\n\n"
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_characterHorizontalScale: 1
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &84982906
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84982903}
-  m_CullTransparentMesh: 1
 --- !u!1 &95354938
 GameObject:
   m_ObjectHideFlags: 0
@@ -19132,11 +18995,7 @@ MonoBehaviour:
   purpleMaterial: {fileID: 2100000, guid: 82ebdca28648695478ee4e0da10d12aa, type: 2}
   flickerDuration: 3
   portAudio: {fileID: 369098573}
-<<<<<<<< HEAD:Assets/_Recovery/0 (3).unity
   activationStartSound: {fileID: 8300000, guid: b95eab69df287b34e96d3ef4de746b6e, type: 3}
-========
-  activationStartSound: {fileID: 8300000, guid: 6b4ae6b48f9d8834eb241f72d342fdab, type: 3}
->>>>>>>> ASH:Assets/Scenes/LVL 1 Base level Scenes/LVL 1 Base level.unity
   signalRestoredSound: {fileID: 8300000, guid: dbc579bf1307fc0498ebb1a1192c6fde, type: 3}
 --- !u!114 &369098571
 MonoBehaviour:
@@ -29049,7 +28908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &774947764
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29414,11 +29273,7 @@ RectTransform:
   m_GameObject: {fileID: 868268101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-<<<<<<<< HEAD:Assets/_Recovery/0 (3).unity
   m_LocalScale: {x: 1.0031617, y: 1.0031617, z: 1.0031617}
-========
-  m_LocalScale: {x: 1, y: 1, z: 1}
->>>>>>>> ASH:Assets/Scenes/LVL 1 Base level Scenes/LVL 1 Base level.unity
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1541846859}
@@ -29448,11 +29303,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<<< HEAD:Assets/_Recovery/0 (3).unity
   m_Texture: {fileID: 2800000, guid: 2014238b2632d0b46b43ff4b682caee9, type: 3}
-========
-  m_Texture: {fileID: 2800000, guid: d8c0e49af0c56674a950c8419527fdcf, type: 3}
->>>>>>>> ASH:Assets/Scenes/LVL 1 Base level Scenes/LVL 1 Base level.unity
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -35055,11 +34906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<<< HEAD:Assets/_Recovery/0 (3).unity
   m_IsActive: 1
-========
-  m_IsActive: 0
->>>>>>>> ASH:Assets/Scenes/LVL 1 Base level Scenes/LVL 1 Base level.unity
 --- !u!224 &933966225
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35072,10 +34919,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-<<<<<<<< HEAD:Assets/_Recovery/0 (3).unity
-========
-  - {fileID: 84982904}
->>>>>>>> ASH:Assets/Scenes/LVL 1 Base level Scenes/LVL 1 Base level.unity
   - {fileID: 972981776}
   - {fileID: 992631143}
   - {fileID: 600155100}
@@ -41327,11 +41170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<<< HEAD:Assets/_Recovery/0 (3).unity
   m_IsActive: 1
-========
-  m_IsActive: 0
->>>>>>>> ASH:Assets/Scenes/LVL 1 Base level Scenes/LVL 1 Base level.unity
 --- !u!224 &1101278722
 RectTransform:
   m_ObjectHideFlags: 0
@@ -43580,11 +43419,7 @@ MonoBehaviour:
   purpleMaterial: {fileID: 2100000, guid: 82ebdca28648695478ee4e0da10d12aa, type: 2}
   flickerDuration: 3
   portAudio: {fileID: 1255652076}
-<<<<<<<< HEAD:Assets/_Recovery/0 (3).unity
   activationStartSound: {fileID: 8300000, guid: b95eab69df287b34e96d3ef4de746b6e, type: 3}
-========
-  activationStartSound: {fileID: 8300000, guid: 6b4ae6b48f9d8834eb241f72d342fdab, type: 3}
->>>>>>>> ASH:Assets/Scenes/LVL 1 Base level Scenes/LVL 1 Base level.unity
   signalRestoredSound: {fileID: 8300000, guid: dbc579bf1307fc0498ebb1a1192c6fde, type: 3}
 --- !u!82 &1255652076
 AudioSource:
@@ -45091,11 +44926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<<< HEAD:Assets/_Recovery/0 (3).unity
   m_IsActive: 1
-========
-  m_IsActive: 0
->>>>>>>> ASH:Assets/Scenes/LVL 1 Base level Scenes/LVL 1 Base level.unity
 --- !u!224 &1384034903
 RectTransform:
   m_ObjectHideFlags: 0
@@ -58030,11 +57861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<<< HEAD:Assets/_Recovery/0 (3).unity
   m_IsActive: 1
-========
-  m_IsActive: 0
->>>>>>>> ASH:Assets/Scenes/LVL 1 Base level Scenes/LVL 1 Base level.unity
 --- !u!224 &1777927757
 RectTransform:
   m_ObjectHideFlags: 0
