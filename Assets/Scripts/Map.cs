@@ -5,7 +5,10 @@ public class MapToggle : MonoBehaviour
 {
     [Header("UI Reference")]
     [Tooltip("Drag your Raw Image map GameObject from the Hierarchy here")]
-    public GameObject mapUI; 
+    public GameObject mapUI;
+    public GameObject objectivesUI;
+
+
 
     private bool isMapOpen = false;
 
@@ -13,9 +16,12 @@ public class MapToggle : MonoBehaviour
     {
         // Ensure the map starts hidden
         if (mapUI != null)
-        {
-            mapUI.SetActive(false);
-        }
+        mapUI.SetActive(false);
+        
+
+        if (objectivesUI != null)
+       objectivesUI.SetActive(false);
+        
     }
 
     private void Update()
@@ -29,10 +35,13 @@ public class MapToggle : MonoBehaviour
 
     private void ToggleMapUI()
     {
+        isMapOpen = !isMapOpen;
+        
         if (mapUI != null)
-        {
-            isMapOpen = !isMapOpen;
-            mapUI.SetActive(isMapOpen);
-        }
+        mapUI.SetActive(isMapOpen);
+
+        if (objectivesUI != null)
+            objectivesUI.SetActive(isMapOpen);
+
     }
 }
