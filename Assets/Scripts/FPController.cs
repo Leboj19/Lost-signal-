@@ -56,12 +56,21 @@ public class FPController : MonoBehaviour
     public float sprintSpeed = 8f;
     private bool isSprinting = false;
 
+    [Header("Player Animations")]
+    private Animator playerAnimator;
+    private bool isCrouching = false;
+
+
+
 
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         originalMoveSpeed = moveSpeed;
+
+        playerAnimator = GetComponentInChildren<Animator>();
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -100,6 +109,7 @@ public class FPController : MonoBehaviour
         }
         HandleMovement();
         HandleLook();
+        UpdateAnimations();
         CheckForInteraction();
 
         if (heldObject != null)
@@ -171,6 +181,18 @@ public class FPController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
     // Handles the player's camera and body rotation.
+
+    private void UpdateAnimations()
+    {
+        if (playerAnimator == null)
+            return;
+
+        float speed = moveInput.magnitude;
+
+        playerAnimator.SetFloat("Speed", speed);
+
+        playerAnimator.SetBool("isCrouching", isCrouching);
+    }
     public void HandleLook()
     {
         // Calculates horizontal camera movement using the look input
@@ -231,11 +253,15 @@ public class FPController : MonoBehaviour
         {
             controller.height = crouchHeight;
             moveSpeed = crouchSpeed;
+
+            isCrouching = true;
         }
         else if (context.canceled)
         {
             controller.height = standHeight;
             moveSpeed = originalMoveSpeed;
+
+            isCrouching = false;
         }
 
 
