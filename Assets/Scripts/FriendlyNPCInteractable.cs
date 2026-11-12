@@ -22,6 +22,11 @@ public class FriendlyNPCInteractable : MonoBehaviour, IInteractable
     [Header("NPC Movement")]
     public float turnSpeed = 3f;
 
+    [Header("NPC Audio")]
+    public AudioSource npcAudioSource;
+    public AudioClip interactionBeep;
+    public AudioClip closingBeep;
+
     [Header("Dialogue Messages")]
 
     [TextArea(3, 5)]
@@ -32,26 +37,26 @@ public class FriendlyNPCInteractable : MonoBehaviour, IInteractable
 
     [TextArea(3, 5)]
     public string oneChipDialogue =
-        "Good work, crew member. You have recovered ONE Signal Chip. " +
-        "There is still one more Signal Chip somewhere aboard the ship. " +
-        "Find it so you can activate the second Signal Port.";
+    "Good work, crew member. You have recovered ONE Signal Chip. " +
+    "There is still one more Signal Chip somewhere aboard the ship. " +
+    "Find it so you can activate the second Signal Port.";
 
     [TextArea(3, 5)]
     public string portsDialogue =
-        "Excellent work! Both Signal Ports have been activated. " +
-        "The final Communication Door should now be accessible. " +
-        "Proceed to the Communication Room, but remember that the final system requires ONE additional Signal Chip and a Battery.";
+    "Excellent work! Both Signal Ports have been activated. " +
+    "The final Communication Door should now be accessible. " +
+    "Proceed to the Communication Room, but remember that the final system requires ONE additional Signal Chip and a Battery.";
 
     [TextArea(3, 5)]
     public string finalChipDialogue =
-        "The final Communication Room is now accessible. " +
-        "You still need ONE Signal Chip and a Battery to power the communication system. " +
-        "Search the remaining ship compartments.";
+    "The final Communication Room is now accessible. " +
+    "You still need ONE Signal Chip and a Battery to power the communication system. " +
+    "Search the remaining ship compartments.";
 
     [TextArea(3, 5)]
     public string finalItemsDialogue =
-        "Outstanding, crew member! You have recovered the final Signal Chip and Battery. " +
-        "Take them to the Communication Screen and restore our connection with the main ship.";
+    "Outstanding, crew member! You have recovered the final Signal Chip and Battery. " +
+    "Take them to the Communication Screen and restore our connection with the main ship.";
 
     [TextArea(3, 5)]
     public string readyForPortsDialogue =
@@ -60,13 +65,15 @@ public class FriendlyNPCInteractable : MonoBehaviour, IInteractable
 
     [TextArea(3, 5)]
     public string finalBatteryDialogue =
-        "Good work! You have recovered the final Signal Chip. " +
-        "The only thing missing is a Battery. Find one and return to the Communication Screen.";
+    "Good work! You have recovered the final Signal Chip. " +
+    "The only thing missing is a Battery. Find one and return to the Communication Screen.";
 
     [TextArea(3, 5)]
     public string finalChipOnlyDialogue =
-        "You have recovered the Battery. " +
-        "Now find ONE final Signal Chip to power the Communication Screen.";
+    "You have recovered the Battery. " +
+    "Now find ONE final Signal Chip to power the Communication Screen.";
+
+  
 
     public void Interact()
     {
@@ -79,6 +86,9 @@ public class FriendlyNPCInteractable : MonoBehaviour, IInteractable
         UpdateDialogue();
 
         dialoguePanel.SetActive(true);
+
+        // Interaction beep sound..
+        PlayNPCSound(interactionBeep);
 
         StartCoroutine(TurnTowardsPlayer());
 
@@ -109,7 +119,6 @@ public class FriendlyNPCInteractable : MonoBehaviour, IInteractable
         if (signalPort2.IsActivated)
             activatedPorts++;
 
-        // IF BOTH SIGNAL PORTS ACTIVATED DO THIS.... 
         if (activatedPorts == 2)
         {
             if (chips > 0 && batteries > 0)
@@ -129,8 +138,6 @@ public class FriendlyNPCInteractable : MonoBehaviour, IInteractable
                 dialogueText.text = portsDialogue;
             }
         }
-
-        // IF ONLY ONE SIGNAL PORT ACTIVATED DO THIS... 
         else if (activatedPorts == 1)
         {
             if (chips > 0)
@@ -146,8 +153,6 @@ public class FriendlyNPCInteractable : MonoBehaviour, IInteractable
                     "Find the remaining Signal Chip and activate the second port.";
             }
         }
-
-        // IF NO SIGNAL PORTS ACTIVATED DO THIS....
         else
         {
             if (chips >= 2)
@@ -172,7 +177,18 @@ public class FriendlyNPCInteractable : MonoBehaviour, IInteractable
 
         dialoguePanel.SetActive(false);
 
+        // closing beep sound... 
+        PlayNPCSound(closingBeep);
+
         playerController.SetGameplayInputBlocked(false);
+    }
+
+    private void PlayNPCSound(AudioClip clip)
+    {
+        if (npcAudioSource != null && clip != null)
+        {
+            npcAudioSource.PlayOneShot(clip);
+        }
     }
 
     private IEnumerator TurnTowardsPlayer()
