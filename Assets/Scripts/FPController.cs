@@ -36,6 +36,10 @@ public class FPController : MonoBehaviour
     private float verticalRotation = 0f;
     // Awake runs once when the GameObject is first loaded.
 
+    private bool gameFinished = false;
+    private bool gameplayInputBlocked = false;
+
+
     [Header("Pickup Settings")]
     public float pickupRange = 3f;
     public Transform holdPoint;
@@ -48,6 +52,10 @@ public class FPController : MonoBehaviour
 
     public GameObject interactionPrompt;
 
+    [Header("Sprint Settings")]
+    public float sprintSpeed = 8f;
+    private bool isSprinting = false;
+
 
 
     private void Awake()
@@ -59,6 +67,20 @@ public class FPController : MonoBehaviour
     }
     private void Update()
     {
+        if (gameFinished)
+            return;
+
+        if (gameplayInputBlocked)
+        {
+            moveInput = Vector2.zero;
+            lookInput = Vector2.zero;
+
+            if (interactionPrompt != null)
+                interactionPrompt.SetActive(false);
+
+            return;
+        }
+        
         if (!canMove)
         {//Stop movement and looking if the player is not allowed to move.
             moveInput = Vector2.zero;
@@ -103,6 +125,18 @@ public class FPController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
     }
     // This method is called by the Input System when look input changes.
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isSprinting = true;
+        }
+        else if (context.canceled)
+        {
+            isSprinting = false;
+        }
+    }
     public void OnLook(InputAction.CallbackContext context)
     {
         // Reads the look input as a Vector2.
@@ -117,7 +151,15 @@ public class FPController : MonoBehaviour
         transform.right * moveInput.x +
         transform.forward * moveInput.y;
         // Moves the player horizontally.
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        
+        float currentSpeed = moveSpeed;
+        if (isSprinting)
+        {
+            currentSpeed = sprintSpeed;
+        }
+
+        controller.Move(move * currentSpeed * Time.deltaTime);
+        
         // Keeps the player connected to the ground.
         if (controller.isGrounded && velocity.y < 0)
         {
@@ -248,6 +290,9 @@ public class FPController : MonoBehaviour
     }
     void CheckForInteraction()
     {
+        if (interactionPrompt == null || cameraTransform == null)
+            return;
+
         Ray ray = new Ray(
             cameraTransform.position,
             cameraTransform.forward
@@ -263,6 +308,7 @@ public class FPController : MonoBehaviour
             if (interactable != null)
             {
                 interactionPrompt.SetActive(true);
+
                 InteractionPromptText prompt =
                hit.collider.GetComponent<InteractionPromptText>();
 
@@ -283,6 +329,42 @@ public class FPController : MonoBehaviour
 
         interactionPrompt.SetActive(false);
 
+    }
+    public void SetGameplayInputBlocked(bool blocked)
+    {
+        gameplayInputBlocked = blocked;
+
+        moveInput = Vector2.zero;
+        lookInput = Vector2.zero;
+
+        if (blocked)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            if (interactionPrompt != null)
+                interactionPrompt.SetActive(false);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+    public void StopPlayer()
+    {
+        gameFinished = true;
+
+        moveInput = Vector2.zero;
+        lookInput = Vector2.zero;
+
+        velocity = Vector3.zero;
+
+        if(interactionPrompt != null)
+        {
+            interactionPrompt.SetActive(false);
+        }
+        Debug.Log("PLAYER FROZEN.");
     }
 }
 
