@@ -19429,7 +19429,7 @@ MonoBehaviour:
   purpleMaterial: {fileID: 2100000, guid: 82ebdca28648695478ee4e0da10d12aa, type: 2}
   flickerDuration: 3
   portAudio: {fileID: 369098573}
-  activationStartSound: {fileID: 8300000, guid: b95eab69df287b34e96d3ef4de746b6e, type: 3}
+  activationStartSound: {fileID: 8300000, guid: 93aa226535140a44c9003a3dbe7ac806, type: 3}
   signalRestoredSound: {fileID: 8300000, guid: dbc579bf1307fc0498ebb1a1192c6fde, type: 3}
 --- !u!114 &369098571
 MonoBehaviour:
@@ -44813,7 +44813,7 @@ MonoBehaviour:
   purpleMaterial: {fileID: 2100000, guid: 82ebdca28648695478ee4e0da10d12aa, type: 2}
   flickerDuration: 3
   portAudio: {fileID: 1255652076}
-  activationStartSound: {fileID: 8300000, guid: b95eab69df287b34e96d3ef4de746b6e, type: 3}
+  activationStartSound: {fileID: 8300000, guid: 93aa226535140a44c9003a3dbe7ac806, type: 3}
   signalRestoredSound: {fileID: 8300000, guid: dbc579bf1307fc0498ebb1a1192c6fde, type: 3}
 --- !u!82 &1255652076
 AudioSource:
@@ -82755,8 +82755,11 @@ MonoBehaviour:
   mediumBatteryColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   lowBatteryColor: {r: 1, g: 0, b: 0, a: 1}
   powerWarningText: {fileID: 1796387485}
+  gameOverPanel: {fileID: 282849540}
   startMenuSceneName: Main Menu
-  gameOverDelay: 2
+  retrySceneName: LVL 1 Base Level
+  victoryPanel: {fileID: 46247607}
+  victoryScreenDelay: 5
 --- !u!114 &8344733665762002373
 MonoBehaviour:
   m_ObjectHideFlags: 0
